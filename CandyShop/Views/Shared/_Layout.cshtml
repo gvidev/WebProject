@@ -1,4 +1,10 @@
-﻿<!doctype html>
+﻿@using CandyShop.Entities;
+@using CandyShop.ExtentionMethods;
+@{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
+}
+
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,7 +27,15 @@
                     <a class="nav-link active" aria-current="page" href="#">Начало</a>
                     <a class="nav-link" href="#">Продукти</a>
                     <a class="nav-link" href="#">Услуги</a>
-                    <a class="nav-link" href="Home/Login">Вход</a>
+                    <span>Hello, @(loggedUser == null ? "Annonymous" : loggedUser.FirstName ) </span>
+                    
+                    @if(loggedUser == null)
+                    {
+                        <a class="nav-link" href="/Account/Login">Вход</a>
+                    }
+                    else{
+                    <a class="nav-link" href="/Account/Logout">Изход</a>
+                    }
                 </div>
             </div>
         </div>

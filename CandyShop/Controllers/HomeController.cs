@@ -10,11 +10,7 @@ namespace CandyShop.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-        
+
     }
 }

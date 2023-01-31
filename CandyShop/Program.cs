@@ -7,7 +7,9 @@ namespace CandyShop
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSession();
             builder.Services.AddControllersWithViews();
+            
 
             var app = builder.Build();
 
@@ -20,11 +22,14 @@ namespace CandyShop
             }
 
             app.UseHttpsRedirection();
+            app.UseSession();
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            
 
             app.MapControllerRoute(
                 name: "default",
