@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using CandyShop.ActionFilters;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace CandyShop.ViewModels.Account
@@ -7,7 +8,7 @@ namespace CandyShop.ViewModels.Account
     {
 
         [DisplayName("Username")]
-        [Required(ErrorMessage ="This field is required!")]
+        [Required(ErrorMessage = "This field is required!")]
         public string Username { get; set; }
 
         [DisplayName("Email")]
@@ -18,6 +19,11 @@ namespace CandyShop.ViewModels.Account
         [Required(ErrorMessage = "This field is required!")]
         public string Password { get; set; }
 
+        [DisplayName("Repeat Password")]
+        [Required(ErrorMessage = "This field is required!")]
+        [Compare("Password", ErrorMessage = "Passwords doesn't match!")]
+        public string RepeatedPasword { get; set; }
+
         [DisplayName("First Name")]
         [Required(ErrorMessage = "This field is required!")]
         public string FirstName { get; set; }
@@ -26,7 +32,8 @@ namespace CandyShop.ViewModels.Account
         [Required(ErrorMessage = "This field is required!")]
         public string LastName { get; set; }
 
-
+        
 
     }
 }
+

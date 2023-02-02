@@ -9,7 +9,10 @@ namespace CandyShop
             // Add services to the container.
             builder.Services.AddSession();
             builder.Services.AddControllersWithViews();
-            
+            builder.Services.AddRazorPages()
+             .AddRazorRuntimeCompilation();
+
+
 
             var app = builder.Build();
 
@@ -21,6 +24,7 @@ namespace CandyShop
                 app.UseHsts();
             }
 
+           
             app.UseHttpsRedirection();
             app.UseSession();
             app.UseStaticFiles();

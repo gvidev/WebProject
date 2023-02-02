@@ -1,22 +1,22 @@
 ﻿using CandyShop.Entities;
 using Microsoft.EntityFrameworkCore;
+using CandyShop.ViewModels.Account;
 
 namespace CandyShop.Repositories
 {
-    public class CandyShop_DbContext : DbContext
+    public class CandyShopDbContext:DbContext
     {
+
         public DbSet<User> Users { get; set; }
 
-
-        public CandyShop_DbContext()
+        public CandyShopDbContext()
         {
-            Users = this.Set<User>();
+            this.Users = this.Set<User>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=GEORGI_VIDEV;Database=CandyShopDB;User Id=gvidev;Password=adminpass;");
-
+            optionsBuilder.UseSqlServer("Server=GEORGI_VIDEV;Database=CandyShopDb;User Id=gvidev;Password=adminpass;TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,12 +25,15 @@ namespace CandyShop.Repositories
                 new User()
                 {
                     Id = 1,
-                    Username = "g",
-                    Password = "g",
-                    FirstName = "Georgi",
+                    Username= "gvidev",
+                    Password= "pass123",
+                    Email= "gvidev@gmail.com",
+                    FirstName="Georgi",
                     LastName = "Videv"
                 }
-                );
+
+            );
         }
+
     }
 }

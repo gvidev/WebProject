@@ -19,4 +19,10 @@ html {
 
 body {
   margin-bottom: 60px;
+  margin-left:50px;
+}
+
+
+.field-validation-error{
+    color:red;
 }

@@ -19,6 +19,7 @@ namespace CandyShop.Controllers
         }
 
         [HttpGet]
+        [LoggedRestrictionFillter]
         public IActionResult Login()
         {
             return View();
@@ -30,7 +31,7 @@ namespace CandyShop.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            CandyShop_DbContext context = new CandyShop_DbContext();
+            CandyShopDbContext context = new CandyShopDbContext();
             User loggedUser = context.Users.Where(u =>
                                     u.Email == model.Email &&
                                     u.Password == model.Password)
@@ -50,6 +51,7 @@ namespace CandyShop.Controllers
 
 
         [HttpGet]
+        [LoggedRestrictionFillter]
         public IActionResult Registration()
         {
             return View();
@@ -72,19 +74,22 @@ namespace CandyShop.Controllers
             item.LastName = model.LastName;
 
 
-            CandyShop_DbContext context = new CandyShop_DbContext();
+            CandyShopDbContext context = new CandyShopDbContext();
 
             context.Users.Add(item);
             context.SaveChanges();
 
+            HttpContext.Session.SetObject("loggedUser", item);
 
-            return RedirectToAction("Index", "Home");        }
+
+            return RedirectToAction("Index", "Home");}
+
 
         [AutheticationFilter]
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("loggedUser");
-            return RedirectToAction("Login","Home");
+            return RedirectToAction("Login","Account");
         }
 
         
