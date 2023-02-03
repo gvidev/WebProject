@@ -8,10 +8,12 @@ namespace CandyShop.Repositories
     {
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public CandyShopDbContext()
         {
             this.Users = this.Set<User>();
+            this.Products = this.Set<Product>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

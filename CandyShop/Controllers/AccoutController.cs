@@ -19,7 +19,7 @@ namespace CandyShop.Controllers
         }
 
         [HttpGet]
-        [LoggedRestrictionFillter]
+        
         public IActionResult Login()
         {
             return View();
@@ -82,7 +82,8 @@ namespace CandyShop.Controllers
             HttpContext.Session.SetObject("loggedUser", item);
 
 
-            return RedirectToAction("Index", "Home");}
+            return RedirectToAction("Index", "Home");
+        }
 
 
         [AutheticationFilter]
