@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CandyShop.Migrations
 {
     [DbContext(typeof(CandyShopDbContext))]
-    [Migration("20230202090807_Initial")]
+    [Migration("20230204120829_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -23,6 +23,41 @@ namespace CandyShop.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CandyShop.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PieceCount")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Products");
+                });
 
             modelBuilder.Entity("CandyShop.Entities.User", b =>
                 {
@@ -52,6 +87,9 @@ namespace CandyShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -64,7 +102,8 @@ namespace CandyShop.Migrations
                             FirstName = "Georgi",
                             LastName = "Videv",
                             Password = "pass123",
-                            Username = "gvidev"
+                            Username = "gvidev",
+                            isAdmin = true
                         });
                 });
 #pragma warning restore 612, 618

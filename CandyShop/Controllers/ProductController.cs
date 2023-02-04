@@ -1,4 +1,5 @@
-﻿using CandyShop.Entities;
+﻿using CandyShop.ActionFilters;
+using CandyShop.Entities;
 using CandyShop.Repositories;
 using CandyShop.ViewModels.Product;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -10,6 +11,14 @@ namespace CandyShop.Controllers
     {
         [HttpGet]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        [AdminRightsFillter]
+        public IActionResult Manage()
         {
             return View();
         }

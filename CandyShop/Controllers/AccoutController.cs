@@ -19,7 +19,7 @@ namespace CandyShop.Controllers
         }
 
         [HttpGet]
-        
+        [LoggedRestrictionFillter]
         public IActionResult Login()
         {
             return View();

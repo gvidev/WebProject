@@ -34,7 +34,11 @@
                         <a class="nav-link" href="/Account/Registration">Регистрация</a>
                     }
                     else{
-                    <a class="nav-link" href="/Account/Logout">Изход</a>
+                        <a class="nav-link" href="/Account/Logout">Изход</a>
+                        if (loggedUser.isAdmin)
+                        {
+                           <a class="nav-link" href="/Product/Manage">Управление на Продукти</a>
+                        }
                     }
                     <span>Hello, @(loggedUser == null ? "Annonymous" : loggedUser.FirstName) </span>
                 </div>

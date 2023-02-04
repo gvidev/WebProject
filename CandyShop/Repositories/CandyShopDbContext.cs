@@ -31,7 +31,8 @@ namespace CandyShop.Repositories
                     Password= "pass123",
                     Email= "gvidev@gmail.com",
                     FirstName="Georgi",
-                    LastName = "Videv"
+                    LastName = "Videv",
+                    isAdmin=true
                 }
 
             );
