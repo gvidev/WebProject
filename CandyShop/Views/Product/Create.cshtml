@@ -1,0 +1,69 @@
+﻿@model CandyShop.ViewModels.Product.CreateVM
+@{
+    ViewData["title"] = "Create Product";
+}
+
+
+<h1>Create Product</h1>
+
+
+
+<h1>Registration</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Name)
+                <br />
+                @Html.TextBoxFor(m=>m.Name)
+                @Html.ValidationMessageFor(m=>m.Name)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Description)
+                <br />
+                @Html.TextBoxFor(m=>m.Description)
+                @Html.ValidationMessageFor(m=>m.Description)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.PieceCount)
+                <br />
+                @Html.TextBoxFor(m=>m.PieceCount)
+                @Html.ValidationMessageFor(m=>m.PieceCount)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Price)
+                <br />
+                @Html.TextBoxFor(m=>m.Price)
+                @Html.ValidationMessageFor(m=>m.Price)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Category)
+                <br />
+                @Html.TextBoxFor(m=>m.Category)
+                @Html.ValidationMessageFor(m=>m.Category)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.ImageUrl)
+                <br />
+                @Html.TextBoxFor(m=>m.ImageUrl)
+                @Html.ValidationMessageFor(m=>m.ImageUrl)
+            </div>
+
+            @Html.ValidationMessage("authError", new {@style = "color:#b02a37"})
+
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a href="/Home/Index">Back to Home</a>
+</div>
