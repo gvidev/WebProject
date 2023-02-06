@@ -10,28 +10,36 @@ namespace CandyShop.Controllers
     public class ProductController : Controller
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(IndexVM model)
         {
-            return View();
+            CandyShopDbContext context = new CandyShopDbContext();
+
+            model.Products = context.Products.ToList();
+
+            return View(model);
         }
 
 
         [HttpGet]
         [AdminRightsFillter]
-        public IActionResult Manage()
+        public IActionResult Manage(IndexVM model)
         {
-            return View();
+
+            CandyShopDbContext context = new CandyShopDbContext();
+
+            model.Products = context.Products.ToList();
+            return View(model);
         }
 
-
         [HttpGet]
+        [AdminRightsFillter]
         public IActionResult Create() 
         { 
             return View();
         }
 
-
         [HttpPost]
+        [AdminRightsFillter]
         public IActionResult Create(CreateVM model) 
         {
 
@@ -53,26 +61,71 @@ namespace CandyShop.Controllers
             context.Add(item);
             context.SaveChanges();
 
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Manage", "Product");
         }
-
 
         [HttpGet]
-        public IActionResult Edit()
+        [AdminRightsFillter]
+        public IActionResult Edit(int id)
         {
-            return View();
-        }
+            EditVM model = new EditVM();
+            CandyShopDbContext context = new CandyShopDbContext();
+            Product item = new Product();
 
+            item = context.Products.Where(m => m.Id == id).FirstOrDefault();
 
-        [HttpPut]
-        public IActionResult Edit(EditVM model)
-        { 
+            if(item == null)
+            {
+                return RedirectToAction("Manage", "Product");
+            }
+
+            model.Id = item.Id;
+            model.ImageUrl = item.ImageUrl;
+            model.Price = item.Price;
+            model.PieceCount = item.PieceCount;
+
             return View(model);
         }
 
+        [HttpPost]
+        [AdminRightsFillter]
+        public IActionResult Edit(EditVM model)
+        {
+            CandyShopDbContext context = new CandyShopDbContext();
+            Product item = new Product();
 
-        [HttpDelete]
-        public IActionResult Delete(int id) { return View(); }
+            item = context.Products.Where(m => m.Id == model.Id).FirstOrDefault();
+
+            item.ImageUrl = model.ImageUrl;
+            item.Price = model.Price;
+            item.PieceCount = model.PieceCount;
+
+            context.Update(item);
+            context.SaveChanges();
+            
+            return RedirectToAction("Manage", "Product"); ;
+        }
+
+        [HttpGet]
+        [AdminRightsFillter]
+        public IActionResult Delete(int id) 
+        {
+            CandyShopDbContext context = new CandyShopDbContext();
+            Product product = new Product();
+
+            product = context.Products.Where(m => m.Id == id).FirstOrDefault();
+
+            if (product == null)
+            {
+                return RedirectToAction("Manage", "Product");
+            }
+
+            context.Remove(product);
+            context.SaveChanges();
+                
+            return RedirectToAction("Manage","Product");
+        
+        }
 
 
     }

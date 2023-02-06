@@ -6,17 +6,7 @@ namespace CandyShop.ViewModels.Product
     public class EditVM
     {
 
-        [DisplayName("Category")]
-        [Required(ErrorMessage = "This field is required!")]
-        public string Category { get; set; }
-
-        [DisplayName("Name")]
-        [Required(ErrorMessage = "This field is required!")]
-        public string Name { get; set; }
-
-        [DisplayName("Description")]
-        [Required(ErrorMessage = "This field is required!")]
-        public string Description { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("ImageUrl")]
         [Required(ErrorMessage = "This field is required!")]
