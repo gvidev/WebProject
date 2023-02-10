@@ -146,7 +146,7 @@ namespace CandyShop.Controllers
 
 
         private string ImageUrl(string url)
-        {
+         {
             try
             {
                 request = (HttpWebRequest)WebRequest.Create(url);
