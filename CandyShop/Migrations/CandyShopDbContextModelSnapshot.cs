@@ -101,6 +101,16 @@ namespace CandyShop.Migrations
                             Password = "pass123",
                             Username = "gvidev",
                             isAdmin = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "hrisid@gmail.com",
+                            FirstName = "Hristina",
+                            LastName = "Despinova",
+                            Password = "h2002d",
+                            Username = "hrisipisi",
+                            isAdmin = true
                         });
                 });
 #pragma warning restore 612, 618

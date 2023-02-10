@@ -33,6 +33,16 @@ namespace CandyShop.Repositories
                     FirstName="Georgi",
                     LastName = "Videv",
                     isAdmin=true
+                },
+                new User()
+                {
+                    Id = 2,
+                    Username = "hrisipisi",
+                    Password = "h2002d",
+                    Email = "hrisid@gmail.com",
+                    FirstName = "Hristina",
+                    LastName = "Despinova",
+                    isAdmin = true
                 }
 
             );

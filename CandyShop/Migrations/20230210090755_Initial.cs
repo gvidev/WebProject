@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace CandyShop.Migrations
 {
     /// <inheritdoc />
@@ -49,7 +51,11 @@ namespace CandyShop.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "FirstName", "LastName", "Password", "Username", "isAdmin" },
-                values: new object[] { 1, "gvidev@gmail.com", "Georgi", "Videv", "pass123", "gvidev", true });
+                values: new object[,]
+                {
+                    { 1, "gvidev@gmail.com", "Georgi", "Videv", "pass123", "gvidev", true },
+                    { 2, "hrisid@gmail.com", "Hristina", "Despinova", "h2002d", "hrisipisi", true }
+                });
         }
 
         /// <inheritdoc />

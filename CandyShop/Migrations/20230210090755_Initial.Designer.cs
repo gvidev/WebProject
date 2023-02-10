@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CandyShop.Migrations
 {
     [DbContext(typeof(CandyShopDbContext))]
-    [Migration("20230204120829_Initial")]
+    [Migration("20230210090755_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -103,6 +103,16 @@ namespace CandyShop.Migrations
                             LastName = "Videv",
                             Password = "pass123",
                             Username = "gvidev",
+                            isAdmin = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "hrisid@gmail.com",
+                            FirstName = "Hristina",
+                            LastName = "Despinova",
+                            Password = "h2002d",
+                            Username = "hrisipisi",
                             isAdmin = true
                         });
                 });
