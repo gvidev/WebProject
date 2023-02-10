@@ -144,7 +144,7 @@ namespace CandyShop.Controllers
         private HttpWebRequest request;
         private HttpWebResponse response = null;
 
-
+        //finded on web 
         private string ImageUrl(string url)
          {
             try

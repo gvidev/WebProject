@@ -26,3 +26,13 @@ body {
 .field-validation-error{
     color:red;
 }
+
+.centered-field{
+    position:center;
+}
+
+#managePhotos {
+    width: 100px;
+    height: 80px;
+}
+

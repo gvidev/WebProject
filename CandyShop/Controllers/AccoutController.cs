@@ -6,13 +6,15 @@ using CandyShop.ViewModels.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Net.Mail;
 
 namespace CandyShop.Controllers
 {
     public class AccountController : Controller
     {
 
-
+        [HttpGet]
+        [AutheticationFilter]
         public IActionResult Index()
         {
             return View();
@@ -35,9 +37,9 @@ namespace CandyShop.Controllers
             User loggedUser = context.Users.Where(u =>
                                     u.Email == model.Email &&
                                     u.Password == model.Password)
-                                     .FirstOrDefault() ;
+                                     .FirstOrDefault();
 
-            if(loggedUser == null)
+            if (loggedUser == null)
             {
                 this.ModelState.AddModelError("authError", "Invalid username or password!");
                 return View(model);
@@ -45,8 +47,24 @@ namespace CandyShop.Controllers
 
             HttpContext.Session.SetObject("loggedUser", loggedUser);
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
 
+        }
+
+        //method that find out if the entered email is correct 
+        private static bool IsValid(string email)
+        {
+            bool valid = true;
+
+            try
+            {
+                var emailAddress = new MailAddress(email);
+            }
+            catch
+            {
+                valid = false;
+            }
+            return valid;
         }
 
 
@@ -60,11 +78,22 @@ namespace CandyShop.Controllers
         [HttpPost]
         public IActionResult Registration(RegistrationVM model)
         {
+            if (!IsValid(model.Email))
+            {
+                ModelState.AddModelError("emailValidation", "Please enter a valid email!");
+            }
+
+            if (model.Password.Length < 7)
+            {
+                ModelState.AddModelError("weakPassword", "Please insert stronger password!");
+            }
+
+
 
             if (!ModelState.IsValid)
                 return View(model);
 
-            
+
 
             User item = new User();
             item.Username = model.Username;
@@ -85,6 +114,26 @@ namespace CandyShop.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+
+        [HttpGet]
+        [AutheticationFilter]
+        public IActionResult Edit(int id)
+        {
+
+            CandyShopDbContext context = new CandyShopDbContext();
+
+            User loggedUser = new User();
+
+            loggedUser = context.Users.Where(x => x.Id == id).FirstOrDefault();
+
+            if (loggedUser == null)
+            {
+                return View(nameof(Login));
+            }
+
+
+            return View();
+        }
 
         [AutheticationFilter]
         public IActionResult Logout()
