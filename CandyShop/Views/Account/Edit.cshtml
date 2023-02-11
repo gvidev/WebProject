@@ -45,6 +45,7 @@
                 @Html.LabelFor(m=>m.NewPassword)
                 <br />
                 @Html.TextBoxFor(m=>m.NewPassword)
+                @Html.ValidationMessageFor(m=>m.NewPassword)
             </div>
             <br />
             <h5>"To save changes please enter password!"</h5>

@@ -157,7 +157,10 @@ namespace CandyShop.Controllers
                 ModelState.AddModelError("emailValidation", "Please enter a valid email!");
             }
             if(model.NewPassword == null)
+            {
                 ModelState.ClearValidationState(nameof(model.NewPassword));
+            }
+               
 
             //if (model.Password != null)
             // {
