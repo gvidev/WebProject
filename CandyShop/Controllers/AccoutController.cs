@@ -184,7 +184,7 @@ namespace CandyShop.Controllers
             context.Update(currentUser);
             context.SaveChanges();
 
-            HttpContext.Session.SetObject<User>("loggeduser", currentUser);
+            HttpContext.Session.SetObject<User>("loggedUser", currentUser);
 
             return RedirectToAction(nameof(Index));
         }

@@ -1,6 +1,7 @@
 ﻿@model CandyShop.ViewModels.Account.EditVM
 @{
     ViewData["Title"] = "Edit Account";
+    this.Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -9,8 +10,8 @@
 
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div >
+    <div >
         <form action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(m=>m.Id)
@@ -39,6 +40,8 @@
                 @Html.TextBoxFor(m=>m.Email)
                 @Html.ValidationMessageFor(m=>m.Email)
             </div>
+
+            <h3>"To save changes please enter password!"</h3>
             
             <div class="form-group">
                 @Html.LabelFor(m=>m.Password)
