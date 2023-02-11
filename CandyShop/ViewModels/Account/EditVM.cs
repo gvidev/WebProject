@@ -16,6 +16,9 @@ namespace CandyShop.ViewModels.Account
         [Required(ErrorMessage = "This field is required!")]
         public string Email { get; set; }
 
+        [DisplayName("New Password")]
+        public string NewPassword { get; set; }
+
         [DisplayName("Password")]
         [Required(ErrorMessage = "This field is required!")]
         public string Password { get; set; }

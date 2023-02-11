@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Edit Account";
     this.Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 
@@ -40,8 +41,13 @@
                 @Html.TextBoxFor(m=>m.Email)
                 @Html.ValidationMessageFor(m=>m.Email)
             </div>
-
-            <h3>"To save changes please enter password!"</h3>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.NewPassword)
+                <br />
+                @Html.TextBoxFor(m=>m.NewPassword)
+            </div>
+            <br />
+            <h5>"To save changes please enter password!"</h5>
             
             <div class="form-group">
                 @Html.LabelFor(m=>m.Password)
@@ -56,7 +62,7 @@
                 @Html.ValidationMessageFor(m=>m.RepeatedPasword)
             </div>
 
-          
+            @Html.ValidationMessage("wrongPassword", new {@style = "color:#b02a37"})
             <br />
             @Html.ValidationMessage("weakPassword", new {@style = "color:#b02a37"})
             <br />

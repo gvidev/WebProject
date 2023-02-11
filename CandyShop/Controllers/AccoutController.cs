@@ -156,17 +156,25 @@ namespace CandyShop.Controllers
             {
                 ModelState.AddModelError("emailValidation", "Please enter a valid email!");
             }
+            if(model.NewPassword == null)
+                ModelState.ClearValidationState(nameof(model.NewPassword));
 
-            if (model.Password != null)
+            //if (model.Password != null)
+            // {
+            //     if (model.Password.Length < 7)
+            //     {
+            //         if (ModelState.ContainsKey("RepeatedPassword"))
+            //         {
+            //             return View(model);
+            //         }
+            //             ModelState.AddModelError("weakPassword", "Please insert stronger password!");
+            //     }
+            // }
+
+
+            if (model.Password != currentUser.Password && model.Password != null)
             {
-                if (model.Password.Length < 7)
-                {
-                    if (ModelState.ContainsKey("RepeatedPassword"))
-                    {
-                        return View(model);
-                    }
-                        ModelState.AddModelError("weakPassword", "Please insert stronger password!");
-                }
+                ModelState.AddModelError("wrongPassword", "Wrong Password. Please try again!");
             }
 
             if (!ModelState.IsValid)
@@ -174,8 +182,16 @@ namespace CandyShop.Controllers
                 return View(model);
             }
 
+            if (model.NewPassword != null)
+            {
+                if (model.NewPassword.Length < 7) {
+                    ModelState.AddModelError("weakPassword", "Please insert stronger password!");
+                    return View(model);
+                }
+            currentUser.Password = model.NewPassword;
+        }
 
-            currentUser.FirstName = model.FirstName;
+        currentUser.FirstName = model.FirstName;
             currentUser.LastName = model.LastName;
             currentUser.Username = model.Username;
             currentUser.Email = model.Email;
@@ -187,18 +203,18 @@ namespace CandyShop.Controllers
             HttpContext.Session.SetObject<User>("loggedUser", currentUser);
 
             return RedirectToAction(nameof(Index));
-        }
-
-        [AutheticationFilter]
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Remove("loggedUser");
-            return RedirectToAction("Login", "Account");
-        }
-
-
-
-
-
     }
+
+    [AutheticationFilter]
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Remove("loggedUser");
+        return RedirectToAction("Login", "Account");
+    }
+
+
+
+
+
+}
 }
