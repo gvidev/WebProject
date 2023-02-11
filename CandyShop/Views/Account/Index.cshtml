@@ -1,11 +1,36 @@
 ﻿@using CandyShop.Entities;
+@using CandyShop.ExtentionMethods;
+@using CandyShop.Repositories;
 @{
     ViewData["Title"] = "Account";
-   
+    User currentUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
 }
 
 
 <h1>/Account/Index</h1>
 
-<h5 href="/Account/Edit">Edit Account</h5>
+
+<div>
+     <h6>FirstName</h6>
+    <h4>@Html.Label(@currentUser.FirstName)</h4>
+    <hr />
+
+    <h6>LastName</h6>
+    <h4>@Html.Label(@currentUser.LastName)</h4>
+    <hr>
+
+    <h6>Email</h6>
+    <h4>@Html.Label(@currentUser.Email)</h4>
+    <hr />
+
+    <h6>Username</h6>
+    <h4>@Html.Label(@currentUser.Username)</h4>
+    <hr />
+
+    <a href="/Account/Edit">Edit Account</a>
+    
+</div>
+
+
+
 

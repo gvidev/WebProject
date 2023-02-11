@@ -6,6 +6,7 @@ using CandyShop.ViewModels.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.IdentityModel.Tokens;
 using System.Net.Mail;
 
 namespace CandyShop.Controllers
@@ -17,6 +18,7 @@ namespace CandyShop.Controllers
         [AutheticationFilter]
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -117,32 +119,84 @@ namespace CandyShop.Controllers
 
         [HttpGet]
         [AutheticationFilter]
-        public IActionResult Edit(int id)
+        public IActionResult Edit()
         {
 
             CandyShopDbContext context = new CandyShopDbContext();
+            User currentUser = new User();
 
-            User loggedUser = new User();
+            currentUser = HttpContext.Session.GetObject<User>("loggedUser");
 
-            loggedUser = context.Users.Where(x => x.Id == id).FirstOrDefault();
+            EditVM model = new EditVM();
 
-            if (loggedUser == null)
+            model.FirstName = currentUser.FirstName;
+            model.LastName = currentUser.LastName;
+            model.Email = currentUser.Email;
+            model.Username = currentUser.Username;
+            model.Id = currentUser.Id;
+            model.Password = currentUser.Password;
+
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AutheticationFilter]
+        public IActionResult Edit(EditVM model)
+        {
+
+            CandyShopDbContext context = new CandyShopDbContext();
+            User currentUser = new User();
+
+            currentUser = context.Users.Where(m => m.Id == model.Id).FirstOrDefault();
+
+
+            if (!IsValid(model.Email))
             {
-                return View(nameof(Login));
+                ModelState.AddModelError("emailValidation", "Please enter a valid email!");
+            }
+
+            if (model.Password != null)
+            {
+                if (model.Password.Length < 7)
+                {
+                    if (ModelState.ContainsKey("RepeatedPassword"))
+                    {
+                        return View(model);
+                    }
+                        ModelState.AddModelError("weakPassword", "Please insert stronger password!");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
             }
 
 
-            return View();
+            currentUser.FirstName = model.FirstName;
+            currentUser.LastName = model.LastName;
+            currentUser.Username = model.Username;
+            currentUser.Email = model.Email;
+            currentUser.Password = model.Password;
+
+            context.Update(currentUser);
+            context.SaveChanges();
+
+            HttpContext.Session.SetObject<User>("loggeduser", currentUser);
+
+            return RedirectToAction(nameof(Index));
         }
 
         [AutheticationFilter]
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("loggedUser");
-            return RedirectToAction("Login","Account");
+            return RedirectToAction("Login", "Account");
         }
 
-        
+
 
 
 

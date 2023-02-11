@@ -4,4 +4,70 @@
 }
 
 
+
 <h1>Edit Account</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(m=>m.Id)
+            <div class="form-group">
+                @Html.LabelFor(m=>m.FirstName)
+                <br />
+                @Html.TextBoxFor(m=>m.FirstName)
+                @Html.ValidationMessageFor(m=>m.FirstName)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.LastName)
+                <br />
+                @Html.TextBoxFor(m=>m.LastName)
+                @Html.ValidationMessageFor(m=>m.LastName)
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Username)
+                <br />
+                @Html.TextBoxFor(m=>m.Username)
+                @Html.ValidationMessageFor(m=>m.Username)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Email)
+                <br />
+                @Html.TextBoxFor(m=>m.Email)
+                @Html.ValidationMessageFor(m=>m.Email)
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(m=>m.Password)
+      <br />
+                @Html.PasswordFor(m=>m.Password)
+                @Html.ValidationMessageFor(m=>m.Password)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m=>m.RepeatedPasword)
+                <br />
+                @Html.PasswordFor(m=>m.RepeatedPasword)
+                @Html.ValidationMessageFor(m=>m.RepeatedPasword)
+            </div>
+
+          
+            <br />
+            @Html.ValidationMessage("weakPassword", new {@style = "color:#b02a37"})
+            <br />
+            @Html.ValidationMessage("emailValidation", new {@style = "color:#b02a37"})
+
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<br />
+@Html.ValidationMessage("error", new {@style = "color:#b02a37"})
+
