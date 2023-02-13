@@ -41,32 +41,7 @@
                 @Html.TextBoxFor(m=>m.Email)
                 @Html.ValidationMessageFor(m=>m.Email)
             </div>
-            <div class="form-group">
-                @Html.LabelFor(m=>m.NewPassword)
-                <br />
-                @Html.TextBoxFor(m=>m.NewPassword)
-                @Html.ValidationMessageFor(m=>m.NewPassword)
-            </div>
-            <br />
-            <h5>"To save changes please enter password!"</h5>
             
-            <div class="form-group">
-                @Html.LabelFor(m=>m.Password)
-      <br />
-                @Html.PasswordFor(m=>m.Password)
-                @Html.ValidationMessageFor(m=>m.Password)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m=>m.RepeatedPasword)
-                <br />
-                @Html.PasswordFor(m=>m.RepeatedPasword)
-                @Html.ValidationMessageFor(m=>m.RepeatedPasword)
-            </div>
-
-            @Html.ValidationMessage("wrongPassword", new {@style = "color:#b02a37"})
-            <br />
-            @Html.ValidationMessage("weakPassword", new {@style = "color:#b02a37"})
-            <br />
             @Html.ValidationMessage("emailValidation", new {@style = "color:#b02a37"})
 
             <br />

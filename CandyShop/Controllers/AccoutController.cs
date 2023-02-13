@@ -134,7 +134,6 @@ namespace CandyShop.Controllers
             model.Email = currentUser.Email;
             model.Username = currentUser.Username;
             model.Id = currentUser.Id;
-            model.Password = currentUser.Password;
 
 
 
@@ -156,49 +155,12 @@ namespace CandyShop.Controllers
             {
                 ModelState.AddModelError("emailValidation", "Please enter a valid email!");
             }
-            if(model.NewPassword == null)
-            {
-                ModelState.ClearValidationState(nameof(model.NewPassword));
-            }
-               
-
-            //if (model.Password != null)
-            // {
-            //     if (model.Password.Length < 7)
-            //     {
-            //         if (ModelState.ContainsKey("RepeatedPassword"))
-            //         {
-            //             return View(model);
-            //         }
-            //             ModelState.AddModelError("weakPassword", "Please insert stronger password!");
-            //     }
-            // }
 
 
-            if (model.Password != currentUser.Password && model.Password != null)
-            {
-                ModelState.AddModelError("wrongPassword", "Wrong Password. Please try again!");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            if (model.NewPassword != null)
-            {
-                if (model.NewPassword.Length < 7) {
-                    ModelState.AddModelError("weakPassword", "Please insert stronger password!");
-                    return View(model);
-                }
-            currentUser.Password = model.NewPassword;
-        }
-
-        currentUser.FirstName = model.FirstName;
+            currentUser.FirstName = model.FirstName;
             currentUser.LastName = model.LastName;
             currentUser.Username = model.Username;
             currentUser.Email = model.Email;
-            currentUser.Password = model.Password;
 
             context.Update(currentUser);
             context.SaveChanges();
@@ -206,18 +168,78 @@ namespace CandyShop.Controllers
             HttpContext.Session.SetObject<User>("loggedUser", currentUser);
 
             return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
+        [AutheticationFilter]
+        public IActionResult ChangePassword()
+        {
+            CandyShopDbContext context = new CandyShopDbContext();
+            User currentUser = new User();
+
+            currentUser = HttpContext.Session.GetObject<User>("loggedUser");
+
+            EditPasswordVM model = new EditPasswordVM();
+
+            model.Id = currentUser.Id;
+            model.Password = currentUser.Password;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AutheticationFilter]
+        public IActionResult ChangePassword(EditPasswordVM model)
+        {
+
+            CandyShopDbContext context = new CandyShopDbContext();
+            User currentUser = new User();
+
+            currentUser = context.Users.Where(m => m.Id == model.Id).FirstOrDefault();
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            if (model.NewPassword.Length < 7)
+            {
+                ModelState.AddModelError("weakPassword", "Please insert stronger password!");
+                return View(model);
+            }
+
+
+            if (currentUser.Password != model.Password)
+            {
+                ModelState.AddModelError("wrongPassword", "Wrong Password. Please try again!");
+                return View(model);
+            }
+
+
+
+
+
+            currentUser.Password = model.NewPassword;
+            context.Update(currentUser);
+            context.SaveChanges();
+
+            return View(nameof(Index));
+        }
+
+
+        [AutheticationFilter]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("loggedUser");
+            return RedirectToAction("Login", "Account");
+        }
+
+
+
+
+
     }
-
-    [AutheticationFilter]
-    public IActionResult Logout()
-    {
-        HttpContext.Session.Remove("loggedUser");
-        return RedirectToAction("Login", "Account");
-    }
-
-
-
-
-
-}
 }
