@@ -3,7 +3,7 @@
 @using CandyShop.Repositories;
 @{
     ViewData["Title"] = "Account";
-   var currentUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
+    User currentUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
 }
 
 
@@ -12,20 +12,20 @@
 
 <div >
      <h6>FirstName</h6>
-    @Html.Label(@currentUser.FirstName)
+    @currentUser.FirstName
     <hr />
 
     <h6>LastName</h6>
-    @Html.Label(@currentUser.LastName)
+    @currentUser.LastName
 
     <hr>
 
     <h6>Email</h6>
-    @Html.Label(@currentUser.Email)
+    @currentUser.Email
     <hr />
 
     <h6>Username</h6>
-    @Html.Label(@currentUser.Username)
+    @currentUser.Username
     <hr />
 
     <a href="/Account/Edit">Edit Account</a>
