@@ -202,7 +202,7 @@ namespace CandyShop.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 2, 15, 18, 25, 19, 754, DateTimeKind.Local).AddTicks(5093),
+                            CreatedDate = new DateTime(2023, 2, 15, 20, 59, 33, 667, DateTimeKind.Local).AddTicks(4196),
                             Email = "gvidev@gmail.com",
                             FirstName = "Georgi",
                             LastName = "Videv",
@@ -213,7 +213,7 @@ namespace CandyShop.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 2, 15, 18, 25, 19, 754, DateTimeKind.Local).AddTicks(5138),
+                            CreatedDate = new DateTime(2023, 2, 15, 20, 59, 33, 667, DateTimeKind.Local).AddTicks(4239),
                             Email = "hrisid@gmail.com",
                             FirstName = "Hristina",
                             LastName = "Despinova",

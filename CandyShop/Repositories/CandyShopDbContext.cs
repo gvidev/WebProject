@@ -26,7 +26,7 @@ namespace CandyShop.Repositories
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=GEORGI_VIDEV;Database=CandyShopDB;User Id=gvidev;Password=g20022002g20.05;");
+            optionsBuilder.UseSqlServer("Server=GEORGI_VIDEV;Database=CandyShopDb;User Id=gvidev;Password=adminpass;TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

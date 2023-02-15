@@ -152,8 +152,8 @@ namespace CandyShop.Migrations
                 columns: new[] { "Id", "CreatedDate", "Email", "FirstName", "LastName", "Password", "Username", "isAdmin" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 2, 15, 18, 25, 19, 754, DateTimeKind.Local).AddTicks(5093), "gvidev@gmail.com", "Georgi", "Videv", "pass123", "gvidev", true },
-                    { 2, new DateTime(2023, 2, 15, 18, 25, 19, 754, DateTimeKind.Local).AddTicks(5138), "hrisid@gmail.com", "Hristina", "Despinova", "h2002d", "hrisipisi", true }
+                    { 1, new DateTime(2023, 2, 15, 20, 59, 33, 667, DateTimeKind.Local).AddTicks(4196), "gvidev@gmail.com", "Georgi", "Videv", "pass123", "gvidev", true },
+                    { 2, new DateTime(2023, 2, 15, 20, 59, 33, 667, DateTimeKind.Local).AddTicks(4239), "hrisid@gmail.com", "Hristina", "Despinova", "h2002d", "hrisipisi", true }
                 });
 
             migrationBuilder.CreateIndex(

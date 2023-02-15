@@ -7,6 +7,7 @@ using CandyShop.ViewModels.Product;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CandyShop.Controllers
 {
@@ -45,7 +46,7 @@ namespace CandyShop.Controllers
         [AdminRightsFillter]
         public IActionResult Create(CreateVM model) 
         {
-
+           
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -55,7 +56,11 @@ namespace CandyShop.Controllers
             Product item = new Product();
 
             string imageUrl = ImageUrl(model.ImageUrl);
-            Product movie = new Product();
+
+            if (imageUrl == null)
+            {
+                return View(model);
+            }
 
             item.Name = model.Name;
             item.Description = model.Description;
@@ -65,7 +70,7 @@ namespace CandyShop.Controllers
             item.PieceCount = model.PieceCount;
             item.CreatedDate = DateTime.Now;
 
-            context.Add(item);
+            context.Products.Add(item);
             context.SaveChanges();
 
             return RedirectToAction("Manage", "Product");
@@ -185,7 +190,6 @@ namespace CandyShop.Controllers
                 return fileName;
             }
             catch (System.Net.WebException)
-
             {
                 if (response != null)
 
