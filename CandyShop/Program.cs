@@ -1,3 +1,5 @@
+using CandyShop.Repositories;
+
 namespace CandyShop
 {
     public class Program
@@ -11,6 +13,7 @@ namespace CandyShop
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages()
              .AddRazorRuntimeCompilation();
+            builder.Services.AddDbContext<CandyShopDbContext>();
 
 
 

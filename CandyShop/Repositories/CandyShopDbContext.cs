@@ -26,7 +26,7 @@ namespace CandyShop.Repositories
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=GEORGI_VIDEV;Database=CandyShopDb;User Id=gvidev;Password=adminpass;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=GEORGI_VIDEV;Database=CandyShopDB;User Id=gvidev;Password=g20022002g20.05;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,7 +40,8 @@ namespace CandyShop.Repositories
                     Email= "gvidev@gmail.com",
                     FirstName="Georgi",
                     LastName = "Videv",
-                    isAdmin=true
+                    isAdmin=true,
+                    CreatedDate= DateTime.Now
                 },
                 new User()
                 {
@@ -50,7 +51,8 @@ namespace CandyShop.Repositories
                     Email = "hrisid@gmail.com",
                     FirstName = "Hristina",
                     LastName = "Despinova",
-                    isAdmin = true
+                    isAdmin = true,
+                    CreatedDate = DateTime.Now
                 }
 
             );
