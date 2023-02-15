@@ -9,11 +9,19 @@ namespace CandyShop.Repositories
 
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Cart_Session> Cart_Sessions { get; set; }
+        public DbSet<Cart_Products> Cart_Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Order_Products> Order_Products { get; set; }
 
         public CandyShopDbContext()
         {
             this.Users = this.Set<User>();
             this.Products = this.Set<Product>();
+            this.Cart_Products= this.Set<Cart_Products>();
+            this.Orders = this.Set<Order>();
+            this.Cart_Sessions = this.Set<Cart_Session>();
+            this.Order_Products= this.Set<Order_Products>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
