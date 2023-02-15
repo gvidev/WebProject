@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Data.SqlTypes;
 
 namespace CandyShop.Entities
 {

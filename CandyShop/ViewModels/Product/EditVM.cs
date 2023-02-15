@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Data.SqlTypes;
 
 namespace CandyShop.ViewModels.Product
 {
