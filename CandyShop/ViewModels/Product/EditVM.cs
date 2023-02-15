@@ -8,10 +8,6 @@ namespace CandyShop.ViewModels.Product
 
         public int Id { get; set; }
 
-        [DisplayName("ImageUrl")]
-        [Required(ErrorMessage = "This field is required!")]
-        public string ImageUrl { get; set; }
-
         [DisplayName("PieceCount")]
         [Required(ErrorMessage = "This field is required!")]
         public int PieceCount { get; set; }

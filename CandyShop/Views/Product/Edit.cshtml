@@ -12,12 +12,7 @@
         <form action="Edit" method="post">
             @Html.HiddenFor(m=>m.Id);
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                @Html.LabelFor(m=>m.ImageUrl)
-                <br />
-                @Html.TextBoxFor(m=>m.ImageUrl)
-                @Html.ValidationMessageFor(m=>m.ImageUrl)
-            </div>
+            
             <div class="form-group">
                 @Html.LabelFor(m=>m.PieceCount)
                 <br />

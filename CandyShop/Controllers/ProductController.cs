@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CandyShop.Controllers
 {
@@ -92,7 +93,6 @@ namespace CandyShop.Controllers
             }
 
             model.Id = item.Id;
-            model.ImageUrl = item.ImageUrl;
             model.Price = item.Price;
             model.PieceCount = item.PieceCount;
 
@@ -108,7 +108,6 @@ namespace CandyShop.Controllers
 
             item = context.Products.Where(m => m.Id == model.Id).FirstOrDefault();
 
-            item.ImageUrl = model.ImageUrl;
             item.Price = model.Price;
             item.PieceCount = model.PieceCount;
 
@@ -131,7 +130,7 @@ namespace CandyShop.Controllers
             {
                 return RedirectToAction("Manage", "Product");
             }
-
+            
             context.Remove(product);
             context.SaveChanges();
                 
@@ -198,6 +197,7 @@ namespace CandyShop.Controllers
             }
         }
 
+        
 
     }
 }
