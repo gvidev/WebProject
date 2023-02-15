@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlTypes;
 
 namespace CandyShop.Entities
 {
@@ -8,7 +9,7 @@ namespace CandyShop.Entities
         [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
-        public double Total { get; set; }
+        public SqlMoney Total { get; set; }
         public DateTime CreatedDate { get; set; }
 
         [ForeignKey(nameof(UserId))]

@@ -103,6 +103,7 @@ namespace CandyShop.Controllers
             item.Password = model.Password;
             item.FirstName = model.FirstName;
             item.LastName = model.LastName;
+            item.CreatedDate = DateTime.Now;
 
 
             CandyShopDbContext context = new CandyShopDbContext();

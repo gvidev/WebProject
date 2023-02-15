@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data.SqlTypes;
 
 namespace CandyShop.Entities
 {
@@ -11,6 +12,7 @@ namespace CandyShop.Entities
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public int PieceCount { get; set; }
-        public decimal Price { get; set; }
+        public SqlMoney Price { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

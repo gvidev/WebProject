@@ -63,6 +63,7 @@ namespace CandyShop.Controllers
             item.Category = model.Category;
             item.ImageUrl = imageUrl;
             item.PieceCount = model.PieceCount;
+            item.CreatedDate = DateTime.Now;
 
             context.Add(item);
             context.SaveChanges();
